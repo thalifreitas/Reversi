@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="view/css/style.css">
+    <script src="js/util.js"></script> 
+    <title>Reversi</title>
+</head>
+
+<body>
+    <div class="top">
+        <h1>REVERSI</h1>
+    </div>
+    
+    <div class="informacoes">
+        <button class="button" onclick="window.location.href='view/jogo.html'">COMEÇAR</button>
+        <button class="button" onclick="mostrarDiv('regras', true)">REGRAS</button>
+    </div> 
+    
+    <div id="regras">
+        <div id="infoRegras">
+            <button class="buttonFechar" onclick="mostrarDiv('regras', false)">X</button>
+            <ul>
+                <li>
+                    <p>Cada jogador deve posicionar sua peça de modo que forme uma linha ocupada 
+                        ( de forma horizontal, vertical ou diagonal) pela nova peça inserida e uma outra já posicionada no tabuleiro, 
+                        devendo possuir uma ou mais peças de seu adversário entre elas, capturando-as. 
+                        As peças do adversário capturadas se tornam do jogador que as capturou.</p>
+                </li>
+
+                <li>
+                   <p>Os jogadores jogam alternadamente.</p> 
+                </li>
+
+                <li>
+                    <p>O jogo se encerra quando não é mais possível realizar
+                         nenhuma jogada ou quando o tabuleiro já está completamente ocupado.</p> 
+                 </li>
+                
+                 <li>
+                    <p>Vence quem possuir, ao final do jogo, mais peças no tabuleiro.</p> 
+                 </li>
+            </ul>
+            
+        </div> 
+    </div>
+</body>
+</html>
