@@ -1,0 +1,139 @@
+@font-face {
+    font-family: fonte;
+    src: url(fonte.ttf);
+}
+
+body{
+   background-image: url(reversi.jpg);
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;   
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family: fonte;
+    font-size: 35px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+
+#regras {
+    display: none;
+}
+
+.top{
+    top: 10%;
+    bottom: auto;
+    text-align: center;
+    font-family: fonte;
+    font-size: 50px;
+    color: rgb(255, 255, 255);
+}
+
+#infoRegras{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    height: 500px;
+    background-color: white;
+    border-radius: 30px;
+    border-width: medium;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+    text-align: left;
+    font-family: fonte;
+    font-size: 25px;
+    
+}
+
+.buttonFechar{
+    display: block;
+    float: right;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    color: white;
+    background-color: #f35651;
+    font-size: 20px;
+}
+
+.buttonFechar:hover {
+    background-color: red;
+    cursor: pointer;
+}
+
+p{
+  margin-top:50px; 
+  margin-right: 20px;
+}
+
+.nomeJogo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: white;
+    width: 600px;
+    height: auto;
+    text-align: center;
+    margin-bottom: auto;
+    border-width: medium;
+    border-style: solid;
+    font-family: fonte;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+
+
+.jogo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 0;
+    margin-bottom: auto;
+    border-width: medium;
+    border-style: solid;
+    border-color: rgb(0, 0, 0);
+}
+
+#voltar{
+    display:inline;
+    background-color: red;
+} 
+#voltar:hover {
+    background-color: #f35651;
+}
+
+#reiniciar{
+    display:inline;
+    background-color: blue;
+}
+#reiniciar:hover {
+    background-color: #74a1ea;
+}
+
+
+
+.cabecalho{
+    display: in;
+    margin-left: auto;
+    margin-right: auto;
+}
