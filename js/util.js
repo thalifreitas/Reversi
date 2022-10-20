@@ -1,10 +1,13 @@
 //Mostrando as regras quando o botão for selecionado 
-function mostrarDiv(el, trueOrFalse) {
-    let display = document.getElementById(el).style.display; 
+function mostrarDiv(regras, trueOrFalse, info) {
+    let display = document.getElementById(regras).style.display; 
     if(trueOrFalse === true){
-        document.getElementById(el).style.display = 'block';
+        document.getElementById(regras).style.display = 'block';
+        document.getElementById(info).style.display = 'none';
     } else{ 
-        document.getElementById(el).style.display = 'none';
+        document.getElementById(regras).style.display = 'none';
+        document.getElementById(info).style.display = 'block';
+        
     }
 }
 

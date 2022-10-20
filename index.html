@@ -14,14 +14,14 @@
         <h1>REVERSI</h1>
     </div>
     
-    <div class="informacoes">
+    <div class="informacoes" id="info">
         <button class="button" onclick="window.location.href='view/jogo.html'">COMEÇAR</button>
-        <button class="button" onclick="mostrarDiv('regras', true)">REGRAS</button>
+        <button class="button" onclick="mostrarDiv('regras', true, 'info')">REGRAS</button>
     </div> 
     
     <div id="regras">
         <div id="infoRegras">
-            <button class="buttonFechar" onclick="mostrarDiv('regras', false)">X</button>
+            <button class="buttonFechar" onclick="mostrarDiv('regras', false, 'info')">X</button>
             <ul>
                 <li>
                     <p>Cada jogador deve posicionar sua peça de modo que forme uma linha ocupada 
