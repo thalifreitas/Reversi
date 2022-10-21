@@ -1,9 +1,7 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="css/style.css">
     <title>Document</title>
 </head>
@@ -11,14 +9,26 @@
     <div class="cabecalho">
      
     <div class="nomeJogo"> 
-        <button class="button" id="voltar" onclick="window.location.href='/index.html'" >Voltar</button>
+        <button class="button" id="voltar" onclick="window.location.href='/index.html'" >VOLTAR</button>
         <h1 style="margin-left: 50px; margin-right: 50px; display: inline-block;" >REVERSI</h1>
-        <button class="button" id="reiniciar">REINICIAR</button>
+        <button class="button" id="restartButton">REINICIAR</button>
     </div>
 
+
     </div>
+    <div class="score">Humano (pretas) : <span id="score1"></span></div>
+    <div class="score">IA (brancas) :<span id="score2"></span></div>
     <div class="jogo">
-
+        <div class="game-controls">
+            <div class="winner"></div>
+        </div>
+        <div class="tabuleiroContainer"></div>
+        <div class="turn"></div>
     </div>
+    <script src="../js/lib/jquery-3.5.0.min.js"></script>
+    <script src="../js/Tabuleiro.js"></script>
+    <script src="../js/Jogador.js"></script>
+    <script src="../js/IA.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 </html>
