@@ -53,7 +53,7 @@ function comecar(){
                 obterClicks();
             }
             
-            $(".turn").html("Vamoos! É A vez do jogador " + jogadores[jogadorAtual].nome+ " <b>MANDAR VERRR!<b>");
+            $(".turn").html("Vamoos! É a vez do jogador " + jogadores[jogadorAtual].nome+ " <b>MANDAR VERRR!<b>");
             $("#pontos1").text(jogadores[0].qtdpecas);
             $("#pontos2").text(jogadores[1].qtdpecas);
             $(".winner").hide();
