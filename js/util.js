@@ -7,7 +7,10 @@ function mostrarDiv(regras, trueOrFalse, info) {
     } else{ 
         document.getElementById(regras).style.display = 'none';
         document.getElementById(info).style.display = 'block';
-        
     }
+
 }
+
+
+
 

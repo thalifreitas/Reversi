@@ -1,37 +1,59 @@
-function IA(currentJogador) {
-    this.currentJogador = currentJogador;
-    this.profundidadeMaxima = 5;
+/*
+Aqui ocorre o funcionamento da Inteligência Artifical, utilizamos o algoritmo de busca minmax.
+Podendo ser encontrato explicações no seguinte site: 
+https://www.javatpoint.com/mini-max-algorithm-in-ai
+*/
+
+// Inicializa recebendo um jogador atual. 
+function IA(jogadorAtual) {
+    this.jogadorAtual = jogadorAtual;
+    this.profundidadeMax = 5; // Para o algoritmo minmax
+}
+
+//Fazendo o movimento chamando a funcao flip 
+IA.prototype.fazerMovimento = function(tabuleiro, move, jogadorAtual) {
+    tabuleiro.flip(move.x, move.y, jogadorAtual);
+}
+
+
+//Mobilidade no tabuleiro
+IA.prototype.mobilidade = function(tabuleiro, jogadorAtual) {
+    let aiMoves = tabuleiro.getMovimentosValidos(jogadorAtual).length;
+    let oppMoves = tabuleiro.getMovimentosValidos(jogadorAtual ? 0 : 1).length;
+    return Math.ceil((oppMoves + aiMoves) === 0 ? 0 : 100 * ((aiMoves - oppMoves)/(aiMoves + oppMoves)));
 }
   
-IA.prototype.mover = function(tabuleiro) {
+  
+//MOVENDO PECA 
+IA.prototype.move = function(tabuleiro) {
     this.visitas = 0;
-    let resultado = this.minimax(tabuleiro, 0, this.currentJogador, this.profundidadeMaxima, -100000, 100000);
-    console.log("Total nodes: " + this.visitas);
-    return resultado;
+    let res = this.minimax(tabuleiro, 0, this.jogadorAtual, this.profundidadeMax, -100000, 100000);
+    return res;
 }
 
-IA.prototype.minimax = function(tabuleiro, profundidade, currentJogador, profundidadeMaxima, alpha, beta) {
-    this.visitas++;
-    let novoTabuleiro, score, move;
-    let melhoresMovimentos;
-    let moves = tabuleiro.pegarTodosMovimentoValidos(currentJogador);
-
-   
-    if(profundidade >= profundidadeMaxima || moves.length === 0){
-        let he = this.mobilidade(tabuleiro, currentJogador);
+// ALGORITMO MINIMAX ESSENCIAL PARA O FUNCIONAMENTO DA IA 
+IA.prototype.minimax = function(tabuleiro, profundidade, jogadorAtual, profundidadeMax, alpha, beta) {
+    this.visitas++; 
+    let novoTabuleiro;
+    let pontos, move;
+    let melhorMovimento;
+    let moves = tabuleiro.getMovimentosValidos(jogadorAtual);
+    
+    if(profundidade >= profundidadeMax || moves.length === 0){
+        let he = this.mobilidade(tabuleiro, jogadorAtual);
         return he;
     }
-    if(currentJogador === this.currentJogador){
-        // Maximize
+    if(jogadorAtual === this.jogadorAtual){
+        // MAXIMIZE
         for (let i = moves.length - 1; i >= 0; i--) {
             move = moves[i];
             novoTabuleiro = tabuleiro.copiar();
-            this.fazerMovimento(novoTabuleiro, move, currentJogador);
-            score = this.minimax(novoTabuleiro, (profundidade + 1), (currentJogador ? 0 : 1), profundidadeMaxima, alpha, beta);
-            move.score = score;
-            if(score > alpha){
-                alpha = score;
-                melhoresMovimentos = move;
+            this.fazerMovimento(novoTabuleiro, move, jogadorAtual);
+            pontos = this.minimax(novoTabuleiro, (profundidade + 1), (jogadorAtual ? 0 : 1), profundidadeMax, alpha, beta);
+            move.pontos = pontos;
+            if(pontos > alpha){
+                alpha = pontos;
+                melhorMovimento = move;
                 
             }
             if(beta <= alpha){
@@ -39,20 +61,19 @@ IA.prototype.minimax = function(tabuleiro, profundidade, currentJogador, profund
             }
         }
         if(profundidade === 0){
-            return melhoresMovimentos;
+            return melhorMovimento;
         } else {
             return alpha;
         }
     } else {
-        // Minimize
-        let min = 100000;
+        // MINIMIZE
         for (let i = moves.length - 1; i >= 0; i--) {
             move = moves[i];
             novoTabuleiro = tabuleiro.copiar();
-            this.fazerMovimento(novoTabuleiro, move, currentJogador);
-            score = this.minimax(novoTabuleiro, (profundidade + 1), (currentJogador ? 0 : 1), profundidadeMaxima, alpha, beta);
-            if(score < beta){
-                beta = score;
+            this.fazerMovimento(novoTabuleiro, move, jogadorAtual);
+            pontos = this.minimax(novoTabuleiro, (profundidade + 1), (jogadorAtual ? 0 : 1), profundidadeMax, alpha, beta);
+            if(pontos < beta){
+                beta = pontos;
             }
             if(beta <= alpha){
                 break;
@@ -61,14 +82,3 @@ IA.prototype.minimax = function(tabuleiro, profundidade, currentJogador, profund
         return beta;
     }
 }
-
-IA.prototype.fazerMovimento = function(tabuleiro, move, currentJogador) {
-    tabuleiro.flip(move.x, move.y, currentJogador);
-}
-
-IA.prototype.mobilidade = function(tabuleiro, currentJogador) {
-    let aiMoves = tabuleiro.pegarTodosMovimentoValidos(currentJogador).length;
-    let oppMoves = tabuleiro.pegarTodosMovimentoValidos(currentJogador ? 0 : 1).length;
-    return Math.ceil((oppMoves + aiMoves) === 0 ? 0 : 100 * ((aiMoves - oppMoves)/(aiMoves + oppMoves)));
-}
-  

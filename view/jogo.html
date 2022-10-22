@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="nome">
+        <input type="text" id="formNome" value="" nome="formNome" placeholder="Digite o seu nome" > 
+        <button class="button" onclick="comecar()">COMECAR</button>
+    </div>
+
+    <div id="iniciarJogo"> 
     <div class="cabecalho">
      
     <div class="nomeJogo"> 
@@ -14,10 +20,9 @@
         <button class="button" id="restartButton">REINICIAR</button>
     </div>
 
-
     </div>
-    <div class="score">Humano (pretas) : <span id="score1"></span></div>
-    <div class="score">IA (brancas) :<span id="score2"></span></div>
+    <div class="score"><span id="nomeDoJogador"></span> (pretas) : <span id="pontos1"></span></div>
+    <div class="score">IA(brancas) :<span id="pontos2"></span></div>
     <div class="jogo">
         <div class="game-controls">
             <div class="winner"></div>
@@ -25,10 +30,13 @@
         <div class="tabuleiroContainer"></div>
         <div class="turn"></div>
     </div>
+
+</div>
     <script src="../js/lib/jquery-3.5.0.min.js"></script>
     <script src="../js/Tabuleiro.js"></script>
     <script src="../js/Jogador.js"></script>
     <script src="../js/IA.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/util.js"></script>
 </body>
 </html>

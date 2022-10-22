@@ -31,7 +31,7 @@ Tabuleiro.prototype.iniciarTabuleiro = function(tabuleiroExistente) {
     }
 }
 
-Tabuleiro.prototype.procurarEmCima = function(x, y, jogador) {
+Tabuleiro.prototype.searchUp = function(x, y, jogador) {
     let pecas = [];
 
     y--;
@@ -53,7 +53,7 @@ Tabuleiro.prototype.procurarEmCima = function(x, y, jogador) {
     return [];
 }
 
-Tabuleiro.prototype.procurarEmBaixo = function(x, y, jogador) {
+Tabuleiro.prototype.procurarBa = function(x, y, jogador) {
     let pecas = [];
 
     y++;
@@ -65,7 +65,6 @@ Tabuleiro.prototype.procurarEmBaixo = function(x, y, jogador) {
             if(pecas.length === 0){
                 return false;
             } else {
-                //console.log("currentSquare", x, y, initialX, initialY, this.tabuleiro[x][y]);
                 return pecas;
             }
         }
@@ -120,7 +119,7 @@ Tabuleiro.prototype.procurarDireita = function(x, y, jogador) {
     return [];
 }
 
-Tabuleiro.prototype.procurarDiagonalEsquerdaEmCima = function(x, y, jogador) {
+Tabuleiro.prototype.procurarDiagonalEsquerdaAlto = function(x, y, jogador) {
     let pecas = [];
 
     x--;
@@ -144,7 +143,7 @@ Tabuleiro.prototype.procurarDiagonalEsquerdaEmCima = function(x, y, jogador) {
     return [];
 }
 
-Tabuleiro.prototype.procurarDiagonalDireitaEmCima = function(x, y, jogador) {
+Tabuleiro.prototype.procurarDiagonalDireitaAlto = function(x, y, jogador) {
     let pecas = [];
 
     x++;
@@ -168,7 +167,7 @@ Tabuleiro.prototype.procurarDiagonalDireitaEmCima = function(x, y, jogador) {
     return [];
 }
 
-Tabuleiro.prototype.procurarDiagonalEsquerdaEmBaixo = function(x, y, jogador) {
+Tabuleiro.prototype.procurarDiagonalEsquerdaBaixo = function(x, y, jogador) {
     let pecas = [];
 
     x--;
@@ -192,7 +191,7 @@ Tabuleiro.prototype.procurarDiagonalEsquerdaEmBaixo = function(x, y, jogador) {
     return [];
 }
 
-Tabuleiro.prototype.procurarDiagonalDireitaEmBaixo = function(x, y, jogador) {
+Tabuleiro.prototype.procurarDiagonalDiretaBaixo = function(x, y, jogador) {
     let pecas = [];
 
     x++;
@@ -216,84 +215,77 @@ Tabuleiro.prototype.procurarDiagonalDireitaEmBaixo = function(x, y, jogador) {
     return [];
 }
 
-Tabuleiro.prototype.pegarPecasDoOponente = function(x, y, jogador) {
+Tabuleiro.prototype.getPecasOponentes = function(x, y, jogador) {
     let pecas = [];
 
     if(this.tabuleiro[x][y]) {
         return [];
     }
 
-    let up = this.procurarEmCima(x, y, jogador);
+    let up = this.searchUp(x, y, jogador);
     pecas = pecas.concat(up ? up : []);
-
-    let down = this.procurarEmBaixo(x, y, jogador);
+    let down = this.procurarBa(x, y, jogador);
     pecas = pecas.concat(down ? down : []);
-
     let left = this.procurarEsquerda(x, y, jogador);
     pecas = pecas.concat(left ? left : []);
-
     let right = this.procurarDireita(x, y, jogador);
     pecas = pecas.concat(right ? right : []);
-
-    let upLeft = this.procurarDiagonalEsquerdaEmCima(x, y, jogador);
+    let upLeft = this.procurarDiagonalEsquerdaAlto(x, y, jogador);
     pecas = pecas.concat(upLeft ? upLeft : []);
-
-    let downLeft = this.procurarDiagonalEsquerdaEmBaixo(x, y, jogador);
+    let downLeft = this.procurarDiagonalEsquerdaBaixo(x, y, jogador);
     pecas = pecas.concat(downLeft ? downLeft : []);
-
-    let upRight = this.procurarDiagonalDireitaEmCima(x, y, jogador);
+    let upRight = this.procurarDiagonalDireitaAlto(x, y, jogador);
     pecas = pecas.concat(upRight ? upRight : []);
-
-    let downRight = this.procurarDiagonalDireitaEmBaixo(x, y, jogador);
+    let downRight = this.procurarDiagonalDiretaBaixo(x, y, jogador);
     pecas = pecas.concat(downRight ? downRight : []);
     
     return pecas;
 }
 
 Tabuleiro.prototype.copiar = function() {
-    let tempJogadores = [];
+    let tempjogadores = [];
     for (let i = this.jogadores.length - 1; i >= 0; i--) {
-      tempJogadores[i] = new Jogador(this.jogadores[i].nome, this.jogadores[i].numero, this.jogadores[i].isIa, this.jogadores[i].qtdPecas);
+      tempjogadores[i] = new Jogador(this.jogadores[i].nome, this.jogadores[i].numero, this.jogadores[i].isIa, this.jogadores[i].qtdpecas);
     };
 
-    let tempTabuleiro = [];
+    let temptabuleiro = [];
     for (let i = 0; i < this.tabuleiro.length; i++) {
-        tempTabuleiro[i] = this.tabuleiro[i].slice();
+        temptabuleiro[i] = this.tabuleiro[i].slice();
     }
     
-    return new Tabuleiro(tempJogadores, tempTabuleiro);
+    return new Tabuleiro(tempjogadores, temptabuleiro);
   }
 
-Tabuleiro.prototype.movimentoValido = function(x, y, currentJogador) {
-    let jogador = this.pegarJogador(currentJogador);
+Tabuleiro.prototype.validMove = function(x, y, jogadorAtual) {
+    let jogador = this.getJogador(jogadorAtual);
 
-    return this.pegarPecasDoOponente(x, y, jogador).length !== 0;
+    return this.getPecasOponentes(x, y, jogador).length !== 0;
 }
 
-Tabuleiro.prototype.pegarTodosMovimentoValidos = function(currentJogador) {
-    let movimentoValidos = [];
+Tabuleiro.prototype.getMovimentosValidos = function(jogadorAtual) {
+    let validMoves = [];
 
     for (let x = 0; x < this.tamanho; x++) {
         for (let y = 0; y < this.tamanho; y++) {
-            if(this.movimentoValido(x, y, currentJogador)) {
-                movimentoValidos.push({x: x, y: y});
+            if(this.validMove(x, y, jogadorAtual)) {
+                validMoves.push({x: x, y: y});
             }
         }
     }
 
-    return movimentoValidos;
+    return validMoves;
 }
 
-Tabuleiro.prototype.flip = function(x, y, currentJogador) {
-    let jogador = this.pegarJogador(currentJogador);
-    let outroJogador = this.pegarJogador(currentJogador, true);
+Tabuleiro.prototype.flip = function(x, y, jogadorAtual) {
+    let jogador = this.getJogador(jogadorAtual);
+    let outroJogador = this.getJogador(jogadorAtual, true);
 
-    let pecas = this.pegarPecasDoOponente(x, y, jogador)
+    let pecas = this.getPecasOponentes(x, y, jogador)
 
     for (let i = 0; i < pecas.length; i++) {
-        let peca = pecas[i];
+        let piece = pecas[i];
 
-        this.tabuleiro[peca.x][peca.y] = jogador.cor;
+        this.tabuleiro[piece.x][piece.y] = jogador.cor;
     }
     this.tabuleiro[x][y] = jogador.cor;
 
@@ -301,13 +293,13 @@ Tabuleiro.prototype.flip = function(x, y, currentJogador) {
     outroJogador.qtdpecas -= pecas.length;
 }
 
-Tabuleiro.prototype.pegarJogador = function(currentJogador, opp) {
+Tabuleiro.prototype.getJogador = function(jogadorAtual, opp) {
     let jogador;
 
     if(!opp) {
-        jogador = this.jogadores[currentJogador]
+        jogador = this.jogadores[jogadorAtual]
     } else {
-        jogador = this.jogadores[currentJogador ? 0 : 1]
+        jogador = this.jogadores[jogadorAtual ? 0 : 1]
     }
 
     return jogador;

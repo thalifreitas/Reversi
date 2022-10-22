@@ -83,7 +83,7 @@ p{
 }
 
 .nomeJogo{
-    display: block;
+    display: block;   
     margin-left: auto;
     margin-right: auto;
     background-color: white;
@@ -101,7 +101,7 @@ p{
 
 
 .jogo{
-    display: block;
+    display: block; 
     margin-left: auto;
     margin-right: auto;
     width: 500px;
@@ -116,7 +116,7 @@ p{
 }
 
 #voltar{
-    display:inline;
+    display:inline;   
     background-color: red;
 } 
 #voltar:hover {
@@ -124,7 +124,7 @@ p{
 }
 
 #restartButton{
-    display:inline;
+    display:inline; 
     background-color: blue;
 }
 #restartButton:hover {
@@ -134,7 +134,7 @@ p{
 
 
 .cabecalho{
-    display: in;
+    display: inline;  
     margin-left: auto;
     margin-right: auto;
 }
@@ -150,7 +150,7 @@ p{
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
+    display: flex;  
     justify-content: center;
     background-color: white;
     border-width: medium;
@@ -228,3 +228,41 @@ p{
     background-color: #d7d7d7;
 }
 
+#nome{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 300px;
+    margin-bottom: auto;
+    width: 400px;
+    height: 100px;
+  
+}
+
+
+input[type=text] {
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        display: none;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+        height: 50px;
+        border-radius: 30px;
+        border-width: medium;
+        border-style: solid;
+        border-color: rgb(0, 0, 0);
+        text-align: left;
+        font-family: fonte;
+        font-size: 25px;
+        
+        
+}
+
+#formNome{
+    display: block;
+}
+
+#iniciarJogo{
+    display: none;
+}
