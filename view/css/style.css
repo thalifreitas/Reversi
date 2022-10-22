@@ -100,6 +100,7 @@ p{
 }
 
 
+
 .jogo{
     display: block; 
     margin-left: auto;
@@ -236,7 +237,10 @@ p{
     margin-bottom: auto;
     width: 400px;
     height: 100px;
-  
+    text-align: center;
+    color: white;
+    font-family: fonte;
+    font-size: 25px;
 }
 
 
