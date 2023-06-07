@@ -8,3 +8,5 @@ Implementar o jogo Reversi, também conhecido como Othello.
 `Alunos:`
 - Thalita de Freitas Silva
 - Victor da Silva Moura
+
+Para visualização: https://thalifreitas.github.io/Reversi/
